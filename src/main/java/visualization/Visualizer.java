@@ -8,12 +8,14 @@ public class Visualizer {
     ChessGame game;
     public static JFrame window;
     public GamePanel gp;
+    public CommandHandler ch;
 
 
     public Visualizer(ChessGame game){
         this.game = game;
         this.gp = new GamePanel(game);
         setupVisuals();
+        setupCommandHandler();
         setGamePanel(gp);
     }
 
@@ -33,5 +35,10 @@ public class Visualizer {
     public void visualize(){
         window.setVisible(true);
         gp.repaint();
+    }
+
+    public void setupCommandHandler(){
+        ch = new CommandHandler(gp);
+        ch.start();
     }
 }
