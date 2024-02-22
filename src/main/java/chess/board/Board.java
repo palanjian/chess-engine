@@ -34,7 +34,10 @@ public class Board {
         }
 
         //initializes rest of pieces
-        pieces[0][0] = new Rook(BoardColors.BLACK); pieces[0][7] = new Rook(BoardColors.BLACK);
+        Piece blackRook1 = new Rook(BoardColors.BLACK, 0, 0);
+        Piece blackRook2 = new Rook(BoardColors.BLACK, 0, 7);
+        pieces[0][0] = blackRook1; pieces[0][7] = blackRook2;
+        allPieces.add(blackRook1); allPieces.add(blackRook2);
         //pieces[0][1] = new Knight(BoardColors.BLACK); pieces[0][6] = new Knight(BoardColors.BLACK);
         //pieces[0][2] = new Bishop(BoardColors.BLACK); pieces[0][5] = new Bishop(BoardColors.BLACK);
         //pieces[0][4] = new King(BoardColors.BLACK); pieces[0][3] = new Queen(BoardColors.BLACK);
