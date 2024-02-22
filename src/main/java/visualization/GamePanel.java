@@ -98,10 +98,10 @@ public class GamePanel extends JPanel {
                 int spriteNumber = 0;
                 if(piece != null) {
                     if (piece.getClass().equals(Pawn.class)) spriteNumber = 5;
-                    //else if (piece.getClass().equals(King.class)) spriteNumber = 0;
-                    //else if (piece.getClass().equals(Queen.class)) spriteNumber = 1;
-                    //else if (piece.getClass().equals(Bishop.class)) spriteNumber = 2;
-                    //else if (piece.getClass().equals(Knight.class)) spriteNumber = 3;
+                    else if (piece.getClass().equals(King.class)) spriteNumber = 0;
+                    else if (piece.getClass().equals(Queen.class)) spriteNumber = 1;
+                    else if (piece.getClass().equals(Bishop.class)) spriteNumber = 2;
+                    else if (piece.getClass().equals(Knight.class)) spriteNumber = 3;
                     else if (piece.getClass().equals(Rook.class)) spriteNumber = 4;
 
                     if(piece.pieceColor == BoardColors.BLACK) spriteNumber += 6;
