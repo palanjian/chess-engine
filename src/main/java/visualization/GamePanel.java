@@ -2,7 +2,7 @@ package visualization;
 
 import chess.ChessGame;
 import chess.board.Board;
-import chess.board.BoardColors;
+import chess.board.BoardColor;
 import chess.pieces.*;
 
 import javax.swing.*;
@@ -56,12 +56,7 @@ public class GamePanel extends JPanel {
 
     public void move(Piece piece, int newRow, int newColumn){
         Debugger.clearDebug(this);
-        game.board.pieces[piece.row][piece.column] = null;
-        piece.row = newRow;
-        piece.column = newColumn;
-
-        game.board.pieces[newRow][newColumn] = piece;
-
+        game.board.move(piece, newRow, newColumn);
         selectedPiece = null;
 
         repaint();
@@ -81,8 +76,9 @@ public class GamePanel extends JPanel {
         for(int i=0; i<8; ++i){
             for(int j=0; j<8; ++j){
                 if(debugBoard[i][j]) g2.setColor(Color.RED);
-                else if(board.colors[i][j] == BoardColors.WHITE) g2.setColor(Color.WHITE);
+                else if(board.pieces[i][j] != null && board.pieces[i][j] == selectedPiece) g2.setColor(new Color(139, 0, 0));
 
+                else if(board.colors[i][j] == BoardColor.WHITE) g2.setColor(Color.WHITE);
                 else g2.setColor(Color.DARK_GRAY);
 
                 g2.fillRect((j * tileSize), (i * tileSize), tileSize, tileSize);
@@ -104,7 +100,7 @@ public class GamePanel extends JPanel {
                     else if (piece.getClass().equals(Knight.class)) spriteNumber = 3;
                     else if (piece.getClass().equals(Rook.class)) spriteNumber = 4;
 
-                    if(piece.pieceColor == BoardColors.BLACK) spriteNumber += 6;
+                    if(piece.pieceColor == BoardColor.BLACK) spriteNumber += 6;
 
 
                     g2.drawImage(pieceSprites[spriteNumber], j * tileSize + (borderSize/2), i * tileSize + (borderSize/2), tileSize - borderSize, tileSize - borderSize, null);

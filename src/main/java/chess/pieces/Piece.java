@@ -1,14 +1,14 @@
 package chess.pieces;
 
 import chess.board.Board;
-import chess.board.BoardColors;
+import chess.board.BoardColor;
 
 public abstract class Piece {
-    public BoardColors pieceColor;
+    public BoardColor pieceColor;
     public int row;
     public int column;
 
-    public Piece(BoardColors color, int row, int column){
+    public Piece(BoardColor color, int row, int column){
         this.pieceColor = color;
         this.row = row;
         this.column = column;

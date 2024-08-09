@@ -1,45 +1,36 @@
 package chess.pieces;
 
+import chess.CheckDetector;
 import chess.board.Board;
-import chess.board.BoardColors;
+import chess.board.BoardColor;
 
 public class Rook extends Piece{
 
-    public Rook(BoardColors color, int row, int column) {
+    public Rook(BoardColor color, int row, int column) {
         super(color, row, column);
     }
 
     public boolean isLegalMove(Board board, int newRow, int newColumn) {
         //if there exists a white piece there, not legal
         if(board.pieces[newRow][newColumn] != null && board.pieces[newRow][newColumn].pieceColor == this.pieceColor) return false;
+        if(newRow != row && newColumn != column) return false;
+
 
         //if its moving side to slide
-        if(newRow == row && newColumn < column){
-            for(int i=newColumn+1; i<column; ++i){
-                if(board.pieces[row][i] != null) return false;
+        if(newRow == row){
+            int start = Math.min(column, newColumn);
+            for(int i=1; i<Math.abs(newColumn-column); ++i){
+                if(board.pieces[row][start+i] != null) return false;
             }
-            return true;
+            return CheckDetector.isKingSafe(board, this, newRow, newColumn);
         }
-        else if(newRow == row && newColumn > column){
-            for(int i=newColumn-1; i>column; --i){
-                if(board.pieces[row][i] != null) return false;
-            }
-            return true;
-        }
-
         //if moving up and down
-        else if(newColumn == column && newRow < row){
-            for(int i=newRow+1; i<row; ++i){
-                if(board.pieces[i][column] != null) return false;
+        else{
+            int start = Math.min(row, newRow);
+            for(int i=1; i<Math.abs(newRow-row); ++i){
+                if(board.pieces[start+i][column] != null) return false;
             }
-            return true;
+            return CheckDetector.isKingSafe(board, this, newRow, newColumn);
         }
-        else if(newColumn == column && newRow > row){
-            for(int i=newRow-1; i>row; --i){
-                if(board.pieces[i][column] != null) return false;
-            }
-            return true;
-        }
-        return false;
     }
 }

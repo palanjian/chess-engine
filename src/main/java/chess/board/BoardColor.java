@@ -1,6 +1,6 @@
 package chess.board;
 
-public enum BoardColors {
+public enum BoardColor {
     WHITE,
     BLACK
 }
