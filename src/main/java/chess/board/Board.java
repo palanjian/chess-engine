@@ -13,6 +13,19 @@ public class Board {
     //white king is index 0, black king index 1
     public Piece[] kings;
 
+
+    ///TEMMPPP
+    ///JUST FOR NOW
+
+    Piece lastMovedPiece;
+    Piece atePiece;
+    int originalRow;
+    int originalCol;
+    int movedRow;
+    int movedCol;
+    ////
+    ////
+
     public Board(){
         pieces = new Piece[8][8];
         allPieces = new HashSet<>();
@@ -21,12 +34,28 @@ public class Board {
         initalizePieces();
     }
 
-    public boolean move(Piece piece, int newRow, int newColumn){
+    public void move(Piece piece, int newRow, int newColumn){
+        //TEMPPP
+        //FIX LATER
+        lastMovedPiece = piece;
+        atePiece = pieces[newRow][newColumn];
+        originalRow = piece.row;
+        originalCol = piece.column;
+        movedRow = newRow;
+        movedCol = newColumn;
+        /////
+        ////
+
         pieces[piece.row][piece.column] = null;
         piece.row = newRow;
         piece.column = newColumn;
         pieces[newRow][newColumn] = piece;
-        return true;
+    }
+    public void undoLastMove(){
+        pieces[movedRow][movedCol] = atePiece;
+        pieces[originalRow][originalCol] = lastMovedPiece;
+        lastMovedPiece.row = originalRow;
+        lastMovedPiece.column = originalCol;
     }
 
     public void initalizePieces(){
