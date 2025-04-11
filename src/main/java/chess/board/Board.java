@@ -13,49 +13,12 @@ public class Board {
     //white king is index 0, black king index 1
     public Piece[] kings;
 
-
-    ///TEMMPPP
-    ///JUST FOR NOW
-
-    Piece lastMovedPiece;
-    Piece atePiece;
-    int originalRow;
-    int originalCol;
-    int movedRow;
-    int movedCol;
-    ////
-    ////
-
     public Board(){
         pieces = new Piece[8][8];
         allPieces = new HashSet<>();
         colors = new BoardColor[8][8];
         kings = new King[2];
         initalizePieces();
-    }
-
-    public void move(Piece piece, int newRow, int newColumn){
-        //TEMPPP
-        //FIX LATER
-        lastMovedPiece = piece;
-        atePiece = pieces[newRow][newColumn];
-        originalRow = piece.row;
-        originalCol = piece.column;
-        movedRow = newRow;
-        movedCol = newColumn;
-        /////
-        ////
-
-        pieces[piece.row][piece.column] = null;
-        piece.row = newRow;
-        piece.column = newColumn;
-        pieces[newRow][newColumn] = piece;
-    }
-    public void undoLastMove(){
-        pieces[movedRow][movedCol] = atePiece;
-        pieces[originalRow][originalCol] = lastMovedPiece;
-        lastMovedPiece.row = originalRow;
-        lastMovedPiece.column = originalCol;
     }
 
     public void initalizePieces(){
@@ -118,5 +81,17 @@ public class Board {
 
         kings[0] = whiteKing;
         kings[1] = blackKing;
+    }
+
+    public Piece getPieceAt(int row, int column){
+        return pieces[row][column];
+    }
+
+    public void setPieceAt(int row, int column, Piece piece){
+        pieces[row][column] = piece;
+        if(piece != null){
+            piece.row = row;
+            piece.column = column;
+        }
     }
 }

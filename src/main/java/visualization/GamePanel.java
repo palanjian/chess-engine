@@ -56,7 +56,7 @@ public class GamePanel extends JPanel {
 
     public void move(Piece piece, int newRow, int newColumn){
         Debugger.clearDebug(this);
-        game.board.move(piece, newRow, newColumn);
+        game.move(piece, newRow, newColumn);
         selectedPiece = null;
 
         repaint();

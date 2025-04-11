@@ -5,13 +5,19 @@ import chess.board.BoardColor;
 import chess.pieces.*;
 
 public class CheckDetector {
+    private static ChessGame game;
+
+    public static void setGame(ChessGame game){
+        CheckDetector.game = game;
+    }
+
     public static boolean isKingSafe(Board board, Piece piece, int newRow, int newCol){
         BoardColor color = piece.pieceColor;
         Piece king = (color == BoardColor.WHITE) ? board.kings[0] : board.kings[1];
 
-        board.move(piece, newRow, newCol);
+        game.move(piece, newRow, newCol);
         boolean isChecked = isKingInCheck(board, king);
-        board.undoLastMove();
+        game.undoLastMove();
 
         return !isChecked;
     }
